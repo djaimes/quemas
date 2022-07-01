@@ -12,7 +12,7 @@
    }
 
    $sql =<<<EOF
-      SELECT * from reporte;
+      SELECT id,correo, latitud, longitud, ST_AsText(ubicacion) from reporte;
 EOF;
 
    $ret = pg_query($db, $sql);
@@ -25,6 +25,7 @@ EOF;
       echo "CORREO = ". $row[1] ."\n";
       echo "LATITUD = ". $row[2] ."\n";
       echo "LONGITUD =  ".$row[3] ."\n\n";
+      echo "UBICACION =  ".$row[4] ."\n\n";
    }
    echo "Operation done successfully\n";
    pg_close($db);
