@@ -14,18 +14,18 @@ class PostgreSQLDriver extends DatabaseLibrary
 
   // Conectar
   public function connect(){
-    $host = 'localhost';
-    $database = 'mvc';
-    $user = 'mvc';
-    $password = 'Mvc_2103';
 
-    $this->connection = new mysqli($host, $user, $password, $database);
+   $host        = "host = 127.0.0.1";
+   $port        = "port = 5432";
+   $dbname      = "dbname = quemas";
+   $credentials = "user = postgres password=colage";
 
+   $this->connection = pg_connect( "$host $port $dbname $credentials"  );
   }
 
   // desconectar
   public function disconnect(){
-    $this->connection->close();
+    pg_close($this->connection);
     return TRUE;
   }
 
@@ -37,7 +37,7 @@ class PostgreSQLDriver extends DatabaseLibrary
   // Query
   public function query(){
     if (isset($this->query)) {
-      $this->result = $this->connection->query($this->query);
+      $this->result = pg_query($this->connection, $this->query);
     }
   }
 
@@ -46,13 +46,13 @@ class PostgreSQLDriver extends DatabaseLibrary
 
       switch ($type) {
         case 'array':
-          $row = $this->result->fetch_array();
+          $row = pg_fetch_array($this->result);
           break;
         case 'object':
-          $row = $this->result->fetch_object();
+          $row = pg_fetch_object($this->result);
             break;
         default:
-          $row = $this->result->fetch_object();
+          $row = pg_fetch_object($this->result);
           break;
       }
 
