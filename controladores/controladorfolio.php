@@ -11,9 +11,11 @@
 
      $modeloFolio = new ModeloFolio;
 
-     $resultadoFolio1 = $modeloFolio->getResultadoFolio($getVars);
+     $numFolio = $modeloFolio->getResultadoFolio($getVars);
 
      header('Content-Type: application/text');
+	
+     echo $numFolio;
    }
  }
  ?>
