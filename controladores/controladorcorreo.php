@@ -60,27 +60,31 @@ $attachments = $Parser->getAttachments();
  * Obtener un número de folio
  */
 $url = 'http://quemas.geodatica.mx/controladores/indexmvc.php';
+
 $curl = curl_init();
  
 $fields = array(
 	'controlador' => 'folio',
 	'origen' => 'correo',
-	'comentario' => 'Procesado con procmail'
+	'comentario' => 'procmail'
 );
  
 $fields_string = http_build_query($fields);
- 
-curl_setopt($curl, CURLOPT_URL, $url);
-curl_setopt($curl, CURLOPT_POST, TRUE);
+
+$url1= $url . '?' . $fields_string;
+
+curl_setopt($curl, CURLOPT_URL, $url1);
+curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
  
-$folio = curl_exec($curl);
- 
+$info = curl_exec($curl);
+
+$folioArray = json_decode($info);
+
+$folio = $folioArray->folio;
+
 curl_close($curl);
-
-$log = "Folio: " . print_r($folio);
-file_put_contents('./log_'.date("j.n.Y").'.log', $log, FILE_APPEND);
-
 
 /**
  * Guardar las fotos por día
@@ -99,11 +103,14 @@ $thumbname = '';
 if(count($attachments)>0){
 	foreach($attachments as $attachment) {
 
-        $imgname =  $folio . iconv_mime_decode($attachment->filename, 0, 'UTF-8');
+        $imgname =  iconv_mime_decode($attachment->filename, 0, 'UTF-8');
+
+		$imgnameFoto = 'Folio-' . $folio .'_FOTO_'. $imgname;
+
         $ext = substr($imgname, strrpos($imgname,'.') +  1);
 
 		if ( $ext === 'jpg' || $ext === 'jpeg' || $ext === 'png'){
-            $imgfile = $imgpath . $imgname;
+            $imgfile = $imgpath . $imgnameFoto;
     		if ($fp = fopen($imgfile, 'w')) {
     		    while($bytes = $attachment->read()) {
              	    fwrite($fp, $bytes);
@@ -131,8 +138,10 @@ if(count($attachments)>0){
             $marcaagua = imagecreatefrompng($marcapng);
             imagecopy($thumb,$marcaagua,$newwidth - 120, $newheight - 156,0,0,120,156);
 
-            $thumbname = 'thumb_' . $imgname;
-            $thumbfile = $imgpath . $thumbname;
+			$imgnameThumb = 'Folio-' . $folio .'_THUMB_'. $imgname;
+
+            $thumbfile = $imgpath . $imgnameThumb;
+
             imagepng($thumb,$thumbfile);
             chmod($thumbfile, 0755);
             imagedestroy($source);

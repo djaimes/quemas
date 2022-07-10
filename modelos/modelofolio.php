@@ -25,10 +25,10 @@ class ModeloFolio
     $ret = $this->db->query();
 
     if (pg_num_rows($this->db->result) > 0) {     
- 	$folios = $this->db->fetch('array');
- 	$folio = $folios['id'];
+ 		$folios = $this->db->fetch('array');
+ 		$folio = $folios['id'];
     }else {
- 	$folio = "No-Folio";
+ 		$folio = "Error-Folio";
     }
 
     $this->db->disconnect();
