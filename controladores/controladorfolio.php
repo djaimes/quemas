@@ -1,6 +1,11 @@
 <?php
 /**
  * Controlador Folio
+ * 
+ * Ejemplo de uso:
+ *
+ * http://quemas.geodatica.mx/controladores/indexmvc.php?controlador=folio&origen=correo&comentario=insertando
+ *
  */
  class ControladorFolio
  {

@@ -8,6 +8,8 @@
 
 $request = $_SERVER['QUERY_STRING'];      // Todo lo que viene después del ?
 
+// print_r($_SERVER);
+
 $argumentos = explode('&',$request);      // Obtener arreglo de variable=valor
 
 $controlador = array_shift($argumentos);  // Obtener el primer elemento
