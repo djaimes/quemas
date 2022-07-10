@@ -87,6 +87,12 @@ $folio = $folioArray->folio;
 curl_close($curl);
 
 /**
+ * Enviar acuse por correo al usuario que reportó la quema
+ */
+$mensaje = 'Hemos recibido su reporte. Para su seguimiento le hemos asignado el folio: ' . $folio;
+mail($from, 'Acuse de reporte de quemas', $folio);
+
+/**
  * Guardar las fotos por día
  */
 $dia = date('d-m-Y');

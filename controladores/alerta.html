@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+<title>resultados</title>
+<style>
+    html{
+        font-family: Verdana;
+        font-size: 1em;
+    }
+    div{
+	    text-align: center;
+    }
+
+    #envoltura{
+        height: 480px;
+        width: 320px;
+    }
+
+    #mensaje{
+        margin: 5px;
+        height: 300px;
+    }
+
+    #encabezado{
+        height: 50px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 50px;
+    }   
+
+    #logo{
+        height: auto;
+    }
+
+    #unsuscribe{
+        margin: 5px;
+    }
+
+    .fondonegro{
+        background-color: rgb(64,0,102);
+        color: white;
+    }
+
+    .fondogris{
+        color: gray;
+    }
+
+    input{
+	    width: auto;
+    }
+
+    img.centrada {
+	    display: block;
+	    margin-left: auto;
+	    margin-right: auto
+    }
+
+    .textogris{
+        color: gray;
+        font-size: 0.7em;
+    }
+
+    .textogrande{
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="envoltura">
+	<div id="encabezado" class="fondonegro">
+		<p>[ASUNTO]</p>
+	</div>
+	<div id="mensaje">
+		<strong>[NOMBRE]</strong><br>
+        <p>[NARRADO]</p>
+        <br>
+		<p class="textogrande">[MARCADOR]</p>
+		<p class="textogris">[MINUTO]</p>
+	    <a href="[IMGPATH]">[TEXTOIMGPATH]</a>
+	</div>
+	<div id="pie">
+        <div id="logo">
+	        <img src="http://palmartec.com/jr2015/web/images/logo80.png">
+        </div>
+        <div id="unsuscribe">
+	        <p class="textogris">
+            Sistema Autom&aacute;tico de Resultados<br>
+            Puede dejar de recibir alertas
+            haciendo clic en &nbsp;
+	        <a href="http://palmartec.com/jr2015/app/desuscribir.php?correo='.$correo.'">Desuscribirme</a>
+	        </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
