@@ -90,7 +90,7 @@ curl_close($curl);
  * Enviar acuse por correo al usuario que reportó la quema
  */
 $mensaje = 'Hemos recibido su reporte. Para su seguimiento le hemos asignado el folio: ' . $folio;
-mail($from, 'Acuse de reporte de quemas', $folio);
+mail($from, 'Acuse de reporte de quemas', $mensaje);
 
 /**
  * Guardar las fotos por día
@@ -122,6 +122,9 @@ if(count($attachments)>0){
              	    fwrite($fp, $bytes);
         	    }
             fclose($fp);
+
+			// Extraer coordenadas de la foto
+
 
             // generar la foto pequeña
 

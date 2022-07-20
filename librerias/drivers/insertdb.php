@@ -12,7 +12,7 @@
    }
 
    $sql = "INSERT INTO REPORTE (ID, CORREO, LATITUD, LONGITUD)
-      VALUES (6, 'daniel.jaimes@gmail.com', 90.6, 18.3)";
+      VALUES (60, 'daniel.jaimes@gmail.com', 90.6, 18.3)";
 
    $ret = pg_query($db, $sql);
    if(!$ret) {
