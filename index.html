@@ -19,15 +19,11 @@
             padding: 0;
             margin: 0;
         }
-
-        html,
-        body,
-        #map {
+        html, body, #map {
             height: 100%;
             font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
         }
     </style>
-
 </head>
 
 <body>
@@ -38,6 +34,8 @@
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                 <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
                 <li><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                <li><a href="#reporte" role="tab"><i class="fa fa-caret-left"></i></a></li>
+                
             </ul>
             <ul role="tablist">
                 <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
@@ -63,7 +61,10 @@
                 <h1 class="sidebar-header">Mensajes<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
             </div>
-
+            <div class="sidebar-pane" id="messages">
+                <h1 class="sidebar-header">Reporte<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+            </div>
             <div class="sidebar-pane" id="settings">
                 <h1 class="sidebar-header">Configuración<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
