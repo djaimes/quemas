@@ -20,7 +20,10 @@ class ModeloLogin
     $this->db->connect();
 
     $sql = "SELECT * FROM usuario WHERE login = '{$getVars['usuario']}' AND contrasena = '{$getVars['contrasena']}'";
+
     $this->db->prepare($sql);
+    
+    echo $this->db->query;
 
     $this->db->query();
 
@@ -29,8 +32,7 @@ class ModeloLogin
       $resultadoLogin = $this->db->fetch('array');
       $nombreDeUsuario = $resultadoLogin['nombre'];
     }else {
-      // El login no existe
-      $nombreDeUsuario = "denegado";
+      $nombreDeUsuario = "Acceso denegado";
     }
 
     $this->db->disconnect();

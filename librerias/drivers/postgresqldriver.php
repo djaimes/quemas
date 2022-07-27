@@ -15,10 +15,10 @@ class PostgreSQLDriver extends DatabaseLibrary
   // Conectar
   public function connect(){
 
-   $host        = "host = 127.0.0.1";
+   $host        = "host = quemas.geodatica.mx";
    $port        = "port = 5432";
    $dbname      = "dbname = quemas";
-   $credentials = "user = postgres password=colage";
+   $credentials = "user=postgres password=colage";
 
    $this->connection = pg_connect( "$host $port $dbname $credentials"  );
   }
@@ -41,7 +41,7 @@ class PostgreSQLDriver extends DatabaseLibrary
     }
   }
 
-  /// Fetch - Ir a buscar los datos del resulta
+  /// Fetch - Ir a buscar los datos del result
   public function fetch($type = 'object'){
 
       switch ($type) {

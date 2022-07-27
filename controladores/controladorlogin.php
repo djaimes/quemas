@@ -14,6 +14,7 @@
      $resultadoLogin1 = $modeloLogin->getResultadoLogin($getVars);
 
      header('Content-Type: application/text');
+     
      echo $resultadoLogin1;
    }
  }

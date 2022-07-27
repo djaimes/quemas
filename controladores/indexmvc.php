@@ -15,6 +15,7 @@ define('SITE_ROOT','http://quemas.geodatica.mx');
 define('SERVER_ROOT', '/var/www/quemas');
 
 // Ruteador de controladores
+
 require_once(SERVER_ROOT . '/controladores/' . 'router.php');
 
 ?>
