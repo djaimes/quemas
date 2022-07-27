@@ -17,13 +17,9 @@
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
         crossorigin="" />
     
-    <link rel="stylesheet" href="./public/css/login.css">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script src="./public/js/quemas.js" charset="utf-8"></script>
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
 
@@ -63,33 +59,42 @@
         <div class="sidebar-content">
             <div class="sidebar-pane" id="home">
                 <h1 class="sidebar-header">
-                    sidebar-v2
+                    Quemas
                     <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
+                <p>Describir el proyecto <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
             </div>
 
             <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Invitado<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <h1 class="sidebar-header" id="nombreUsuario">Invitado<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
                 <p>Autentícate en el portal</p>
-                <label id="nombreUsuario"></label>
                 <form id="formLogin">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="loginUsuario" aria-describedby="emailHelp" placeholder="Enter email" value="daniel.jaimes@gmail.com">
-                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      <input type="email" class="form-control" id="loginUsuario" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted">No comparta su cuenta</small>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="loginContrasena" placeholder="Password" value="colage">
+                      <input type="password" class="form-control" id="loginContrasena" placeholder="Password">
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                   </form>
             </div>
 
             <div class="sidebar-pane" id="messages">
-                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                <p>Mensajes</p>
+                <h1 class="sidebar-header" id="numeroFolio">Reporte<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <form id="formReporte">
+                    <div class="form-group">
+                      <label for="labelLatitud">Latitud</label>
+                      <input type="input" class="form-control" id="inputLatitud"  placeholder="Latitud">
+                    </div>
+                    <div class="form-group">
+                      <label for="labelLongitud">Longitud</label>
+                      <input type="input" class="form-control" id="inputLongitud" placeholder="Longitud">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </form>
             </div>
 
             <div class="sidebar-pane" id="settings">
@@ -150,5 +155,7 @@
         var sidebar = L.control.sidebar('sidebar').addTo(map);
 
     </script>
+
+    <script src="./public/js/quemas.js" charset="utf-8"></script>
 </body>
 </html>

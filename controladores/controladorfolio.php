@@ -20,7 +20,7 @@
 
      header('Content-Type: application/text');
 	
-	 $folio = array('folio' => $numFolio, 'obs' => 'comentario');
+	   $folio = array('folio' => $numFolio, 'obs' => 'comentario');
 
      echo json_encode($folio);
    }

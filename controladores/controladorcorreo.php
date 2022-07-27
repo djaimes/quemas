@@ -59,7 +59,7 @@ $attachments = $Parser->getAttachments();
 /**
  * Obtener un número de folio
  */
-$url = 'http://quemas.geodatica.mx/controladores/indexmvc.php';
+$url = 'http://quemas.geodatica.mx/controladores/bootstrap.php';
 
 $curl = curl_init();
  

@@ -6,9 +6,7 @@
 
 // http://localhost/index.php?controlador=controladorprofesores&id=1&nombre=daniel
 
-$request = $_SERVER['QUERY_STRING'];      // Todo lo que viene después del ?
-
-// print_r($_SERVER);
+$request = urldecode($_SERVER['QUERY_STRING']);      // Todo lo que viene después del ?
 
 $argumentos = explode('&',$request);      // Obtener arreglo de variable=valor
 
@@ -17,7 +15,9 @@ $controlador = array_shift($argumentos);  // Obtener el primer elemento
 $controladorArray = explode('=',$controlador);
 
 $nombreControlador = $controladorArray[1];
+
 $getVars = array();
+
 foreach ($argumentos as $argumento) {
   list($variable, $valor) = explode('=', $argumento);
   $getVars[$variable] = $valor;
@@ -25,6 +25,7 @@ foreach ($argumentos as $argumento) {
 
 // El nombre del controlador viene como: profesores, le aumento la palabra
 // controlador para que quede siempre como: controladorprofesores.php
+
 $targetControlador = SERVER_ROOT . '/controladores/' . 'controlador' . strtolower($nombreControlador) . '.php';
 
 // Incluir el controlador secundario

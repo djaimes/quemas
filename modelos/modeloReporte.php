@@ -1,7 +1,7 @@
 <?php
 
 /***
-*   Modelo Login
+*   Modelo Reporte
 */
 
 require_once(SERVER_ROOT . '/librerias/drivers/' . 'postgresqldriver.php');
@@ -15,7 +15,7 @@ class ModeloLogin
     $this->db = new PostgreSQLDriver;
   }
 
-  public function getResultadoLogin(array $getVars){
+  public function getResultadoReporte(array $getVars){
 
     $this->db->connect();
 
@@ -30,14 +30,14 @@ class ModeloLogin
     if (pg_num_rows($this->db->result) > 0) {
       // El login si existe
       $resultadoLogin = $this->db->fetch('array');
-      $nombreDeUsuario = $resultadoLogin['nombre'];
+      $folioReporte = $resultadoReporte['nombre'];
     }else {
-      $nombreDeUsuario = "Acceso denegado";
+      $folioReporte = -1;
     }
 
     $this->db->disconnect();
 
-    return $nombreDeUsuario;
+    return $folioReporte;
   }
 }
 ?>
