@@ -23,9 +23,6 @@ foreach ($argumentos as $argumento) {
   $getVars[$variable] = $valor;
 }
 
-// El nombre del controlador viene como: profesores, le aumento la palabra
-// controlador para que quede siempre como: controladorprofesores.php
-
 $targetControlador = SERVER_ROOT . '/controladores/' . 'controlador' . strtolower($nombreControlador) . '.php';
 
 // Incluir el controlador secundario

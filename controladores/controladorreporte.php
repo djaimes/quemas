@@ -9,7 +9,7 @@
 
      require_once(SERVER_ROOT . '/modelos/' . 'modelo' . 'reporte.php');
 
-     $modeloLogin = new ModeloReporte;
+     $modeloReporte = new ModeloReporte;
 
      $resultadoReporte = $modeloReporte->getResultadoReporte($getVars);
 

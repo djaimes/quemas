@@ -5,25 +5,20 @@
 */
 
 $(document).ready(function(){
-  login();
   reporte();
+  login();
 })
-
 
 /***
 * login
 */
 function login() {
-
   $('#formLogin').submit(function(event){
-
-    event.preventDefault();             /* evita que se repinte la página*/
+    event.preventDefault();
     var usuario = $('#loginUsuario').val();
     var contrasena = $('#loginContrasena').val();
     if (usuario.length > 0 && contrasena.length > 0) {
-
       validarLogin(usuario, contrasena);
-
     } else {
       $('#loginUsuario').val('');
       $('#loginContrasena').val('');
@@ -32,21 +27,15 @@ function login() {
 }
 
 /***
-* login
+* reporte
 */
 function reporte() {
-
   $('#formReporte').submit(function(event){
-
-    event.preventDefault();             /* evita que se repinte la página*/
-
+    event.preventDefault();
     var latitud = $('#inputLatitud').val();
     var longitud = $('#inputLongitud').val();
-
     if (latitud.length > 0 && longitud.length > 0) {
-
       agregarReporte(latitud, longitud);
-
     } else {
       $('#inputLatitud').val('');
       $('#inputLongitud').val('');
@@ -85,8 +74,6 @@ function validarLogin(usuario, contrasena) {
 */
 function agregarReporte(latitud, longitud) {
 
-  alert('lat '+ latitud + 'lon ' + longitud);
-
   $.ajax({
     url: "/controladores/bootstrap.php",
     success: function (data, textStatus, jqXHR) {
@@ -96,13 +83,15 @@ function agregarReporte(latitud, longitud) {
     data: {
       controlador: 'reporte',
       latitud: latitud,
-      longitud: longitud
+      longitud: longitud,
+      correo: correoReporte
     },
 
     dataType: 'text',         // Valor esperado de regreso
     error: function (jqHR, status, error) {
     },
     complete: function () {
+      console.log(jqHR);
     }
 
   });

@@ -20,5 +20,6 @@
    } else {
       echo "Records created successfully\n";
    }
+   
    pg_close($db);
 ?>
