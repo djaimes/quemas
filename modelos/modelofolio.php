@@ -19,16 +19,17 @@ class ModeloFolio
 
     $this->db->connect();
 
-    $sql = "INSERT INTO folio (origen, comentario) VALUES('{$getVars['origen']}', '{$getVars['comentario']}') returning id";
+    $sql = "INSERT INTO folio(origen, comentario) VALUES('{$getVars['origen']}', '{$getVars['comentario']}') returning id";
+    
     $this->db->prepare($sql);
 
     $ret = $this->db->query();
 
     if (pg_num_rows($this->db->result) > 0) {     
- 		$folios = $this->db->fetch('array');
- 		$folio = $folios['id'];
+ 		  $folios = $this->db->fetch('array');
+ 		  $folio = $folios['id'];
     }else {
- 		$folio = "Error-Folio";
+ 		  $folio = 0;
     }
 
     $this->db->disconnect();

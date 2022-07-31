@@ -17,12 +17,12 @@
      $modeloFolio = new ModeloFolio;
 
      $numFolio = $modeloFolio->getResultadoFolio($getVars);
-
-     header('Content-Type: application/text');
 	
-	   $folio = array('folio' => $numFolio, 'obs' => 'comentario');
+	   // $folio = array('folio' => $numFolio, 'obs' => 'comentario');
 
-     return json_encode($folio);
+     //return json_encode($folio);
+     return $numFolio;
+
    }
  }
  ?>

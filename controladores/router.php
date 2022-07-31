@@ -7,13 +7,9 @@
 // http://localhost/index.php?controlador=controladorprofesores&id=1&nombre=daniel
 
 $request = urldecode($_SERVER['QUERY_STRING']);      // Todo lo que viene después del ?
-
 $argumentos = explode('&',$request);      // Obtener arreglo de variable=valor
-
 $controlador = array_shift($argumentos);  // Obtener el primer elemento
-
 $controladorArray = explode('=',$controlador);
-
 $nombreControlador = $controladorArray[1];
 
 $getVars = array();
@@ -33,6 +29,6 @@ $nombreClase = 'Controlador' . ucfirst($nombreControlador);
 $controlador = new $nombreClase;
 
 // Pasar el control al controlador secundario
-$ret = $controlador->main($getVars);
+$controlador->main($getVars);
 
 ?>

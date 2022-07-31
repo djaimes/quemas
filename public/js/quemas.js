@@ -99,7 +99,7 @@ function agregarReporte(correoReporte, latitud, longitud) { // grrr tardé 3 dí
     },
     
     complete: function () {
-      console.log("completado");
+      //console.log("completado");
     }
 
   });
