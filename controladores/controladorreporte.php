@@ -13,9 +13,9 @@
 
      $resultadoReporte = $modeloReporte->getResultadoReporte($getVars);
 
-     header('Content-Type: application/text');
+     //header('Content-Type: application/text');
      
-     echo $resultadoReporte;
+     return $resultadoReporte;
    }
  }
  ?>

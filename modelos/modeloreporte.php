@@ -16,17 +16,20 @@ class ModeloReporte
 
   public function getResultadoReporte(array $getVars){
     $this->db->connect();
-    $sql = "INSERT INTO reporte(correo, latitud, longitud) VALUES('{$getVars['correo']}', '{$getVars['latitud']}','{$getVars['longitud']}')";
+
+    $sql = "INSERT INTO reporte(correo, latitud, longitud) VALUES('{$getVars['correo']}', {$getVars['latitud']}, {$getVars['longitud']}) returning id";
     $this->db->prepare($sql);
     $ret = $this->db->query();
 
     if(!$ret) {
-       $folioReporte = -1;
+       $folioReporte = $ret;
     } else {
-       $folioReporte = 1;
+       $folioReporte = $ret;
     }
+    
     $this->db->disconnect();
-    return $folioReporte;
+
+    echo $folioReporte;
   }
 }
 ?>

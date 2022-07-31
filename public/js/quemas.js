@@ -5,8 +5,10 @@
 */
 
 $(document).ready(function(){
-  reporte();
+
   login();
+  reporte();
+
 })
 
 /***
@@ -34,8 +36,9 @@ function reporte() {
     event.preventDefault();
     var latitud = $('#inputLatitud').val();
     var longitud = $('#inputLongitud').val();
+    var correoReporte = $('#correoReporte').val();
     if (latitud.length > 0 && longitud.length > 0) {
-      agregarReporte(latitud, longitud);
+      agregarReporte(correoReporte, latitud, longitud);
     } else {
       $('#inputLatitud').val('');
       $('#inputLongitud').val('');
@@ -49,6 +52,7 @@ function reporte() {
 function validarLogin(usuario, contrasena) {
 
   $.ajax({
+
     url: "/controladores/bootstrap.php",
     success: function (data, textStatus, jqXHR) {
       $('#nombreUsuario').text(data);
@@ -72,11 +76,12 @@ function validarLogin(usuario, contrasena) {
 /***
 * agregarReporte
 */
-function agregarReporte(latitud, longitud) {
+function agregarReporte(correoReporte, latitud, longitud) { // grrr tardé 3 días por qué faltaba correoReporte
 
   $.ajax({
     url: "/controladores/bootstrap.php",
     success: function (data, textStatus, jqXHR) {
+      console.log("Data: " + data);
       $('#numeroFolio').text(data);
     },
    
@@ -88,12 +93,16 @@ function agregarReporte(latitud, longitud) {
     },
 
     dataType: 'text',         // Valor esperado de regreso
+    
     error: function (jqHR, status, error) {
+      console.log("error");
     },
+    
     complete: function () {
-      console.log(jqHR);
+      console.log("completado");
     }
 
   });
+
 }
 

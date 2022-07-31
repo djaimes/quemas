@@ -22,7 +22,7 @@
 	
 	   $folio = array('folio' => $numFolio, 'obs' => 'comentario');
 
-     echo json_encode($folio);
+     return json_encode($folio);
    }
  }
  ?>

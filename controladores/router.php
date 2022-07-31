@@ -33,6 +33,6 @@ $nombreClase = 'Controlador' . ucfirst($nombreControlador);
 $controlador = new $nombreClase;
 
 // Pasar el control al controlador secundario
-$controlador->main($getVars);
+$ret = $controlador->main($getVars);
 
 ?>
