@@ -15,7 +15,7 @@ class PostgreSQLDriver extends DatabaseLibrary
   // Conectar
   public function connect(){
 
-   $host        = "host = quemas.geodatica.mx.local";
+   $host        = "host = quemas.geodatica.org";
    $port        = "port = 5432";
    $dbname      = "dbname = quemas";
    $credentials = "user=postgres password=colage";

@@ -55,7 +55,8 @@ function validarLogin(usuario, contrasena) {
 
     url: "/controladores/bootstrap.php",
     success: function (data, textStatus, jqXHR) {
-      $('#nombreUsuario').text(data);
+	$('#nombreUsuario').text(data);	//Coloca el nombre del usuario
+	$('#correoReporte').val(usuario);	//Coloca el correo del usuario para envío de reportes
     },
    
     data: {

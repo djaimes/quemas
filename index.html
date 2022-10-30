@@ -48,6 +48,7 @@
 </head>
 
 <body>
+<!-- git 30-10-22 !>
     <div id="sidebar" class="sidebar collapsed">
         <!-- Nav tabs -->
         <div class="sidebar-tabs">
@@ -99,17 +100,17 @@
                     <div class="form-group">
                         <label for="correoReporteLabel">Correo</label>
                         <input type="email" class="form-control" id="correoReporte" aria-describedby="emailHelp"
-                            placeholder="foo@bar.com" value="foo@bar.com">
+                            placeholder="foo@bar.com" value="">
                     </div>
                     <div class="form-group">
                         <label for="labelLatitud">Latitud</label>
-                        <input type="input" class="form-control" id="inputLatitud" placeholder="Latitud"
-                            value="19.858585">
+                        <input type="input" class="form-control" id="inputLatitud" placeholder="19.858585"
+                            value="">
                     </div>
                     <div class="form-group">
                         <label for="labelLongitud">Longitud</label>
-                        <input type="input" class="form-control" id="inputLongitud" placeholder="Longitud"
-                            value="-90.555555">
+                        <input type="input" class="form-control" id="inputLongitud" placeholder="-90.555555"
+                            value="">
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
@@ -150,7 +151,7 @@
             popupAnchor: [0, -32] // point from which the popup should open relative to the iconAnchor
         });
 
-        var wmsLayer = L.tileLayer.wms('http://quemas.geodatica.mx.local:8080/geoserver/quemas/wms', {
+        var wmsLayer = L.tileLayer.wms('http://quemas.geodatica.org:8080/geoserver/quemas/wms', {
             layers: 'reporte',
             style: 'quemas',
             format: 'image/png',

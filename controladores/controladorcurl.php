@@ -4,7 +4,7 @@
 /**
  * Obtener un número de folio
  */
-$url = 'http://quemas.geodatica.mx/controladores/indexmvc.php';
+$url = 'http://quemas.geodatica.org/controladores/indexmvc.php';
 
 $curl = curl_init();
  

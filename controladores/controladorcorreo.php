@@ -28,7 +28,7 @@ if(($fp = fopen('php://stdin','r')) !== false){
 }
 
 // Repositorio de respaldo de correos .eml 
-$mailpath = '/var/www/quemas/data/correo/';
+$mailpath = '/var/www/html/quemas/data/correo/';
 
 // Nombre del archivo para respaldo del correo
 $hora = new DateTime();
@@ -44,7 +44,7 @@ fwrite($file, $email);
 fclose($file);
  
 // Parsear el contenido del correo 
-require_once('/var/www/quemas/lib/mailparser/MimeMailParser.class.php');
+require_once('/var/www/html/quemas/lib/mailparser/MimeMailParser.class.php');
 
 $Parser = new MimeMailParser();
 $Parser->setPath($mailfile);
@@ -97,7 +97,7 @@ mail($from, 'Acuse de reporte de quemas', $mensaje);
  */
 $dia = date('d-m-Y');
 
-$imgpath = '/var/www/quemas/data/fotos/' . $dia . '/';
+$imgpath = '/var/www/html/quemas/data/fotos/' . $dia . '/';
 
 if ( !is_dir($imgpath ) ){
     umask(0);
@@ -140,10 +140,10 @@ if(count($attachments)>0){
             //$metadata = $subject . ' ' .date('d/m/Y') . ' ' . $hora->format("G:i:s") . ' hrs';
             $metadata = $folio . ' ' .date('d/m/Y') . ' ' . $hora->format("G:i:s") . ' hrs';
             //|imagestring($thumb, 5, 10, 450, $metadata, $colorletras);
-            imagettftext($thumb, 12, 0, 10, 450, $colorletras, '/var/www/quemas/lib/fonts/cour.ttf', $metadata);
+            imagettftext($thumb, 12, 0, 10, 450, $colorletras, '/var/www/html/quemas/lib/fonts/cour.ttf', $metadata);
 
             // aplicar marca de agua a thumb
-            $marcapng = '/var/www/quemas/public/images/marcaaguageodatica.png';
+            $marcapng = '/var/www/html/quemas/public/images/marcaaguageodatica.png';
             $marcaagua = imagecreatefrompng($marcapng);
             imagecopy($thumb,$marcaagua,$newwidth - 120, $newheight - 156,0,0,120,156);
 
