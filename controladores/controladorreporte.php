@@ -15,9 +15,11 @@
      include_once(SERVER_ROOT . '/controladores/controladorfolio.php');
      $nombreClase = 'ControladorFolio';
      $controlador = new $nombreClase;
-     $folio = $controlador->main($getVars);
+     $info = $controlador->main($getVars);
      
      // Agregar el folio obtenido al reporte de quemas
+     $folioArray = json_decode($info);
+     $folio = $folioArray->folio;
      $getVars['folio'] = $folio;
 
      // Ingresar el reporte de quemas

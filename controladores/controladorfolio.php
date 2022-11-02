@@ -19,11 +19,15 @@
      $numFolio = $modeloFolio->getResultadoFolio($getVars);
 
      $folio = array('folio' => $numFolio, 'obs' => 'comentario');
+     
+     $json = json_encode($folio);
 
-     // Debo usar echo en lugar de return para recibir valores desde curl
-     echo json_encode($folio);
-
-     //return $numFolio;
+     if ($getVars['origen'] == 'correo'){
+	     echo $json;	// Si viene por correo
+     }
+     else{
+     	     return $json;	// Si viene por sistema web
+     }
    }
  }
  ?>

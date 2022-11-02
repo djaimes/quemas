@@ -88,6 +88,7 @@ function agregarReporte(correoReporte, latitud, longitud) { // grrr tardé 3 dí
    
     data: {
       controlador: 'reporte',
+      origen: 'sistema',
       latitud: latitud,
       longitud: longitud,
       correo: correoReporte
