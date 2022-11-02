@@ -1,10 +1,10 @@
 <?php
 
 /***
-*   Ruteador del sistema
+ *   Ruteador del sistema
+ *    http://localhost/router.php?controlador=controladorprofesores&id=1&nombre=daniel
+ *
 */
-
-// http://localhost/index.php?controlador=controladorprofesores&id=1&nombre=daniel
 
 $request = urldecode($_SERVER['QUERY_STRING']);      // Todo lo que viene después del ?
 $argumentos = explode('&',$request);      // Obtener arreglo de variable=valor

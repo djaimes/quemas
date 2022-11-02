@@ -1,11 +1,17 @@
 <?php
 
 /***
-*   Controlador frontal
+ *   Controlador frontal
+ *
+ *   Ejemplo: Obtener un número de folio
+ *
+ *   http://quemas.geodatica.org/controladores/bootstrap.php?controlador=folio&origen=correo&comentario=safari
+ *
 */
 
 ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
+
 error_reporting(E_ALL);
 
 // URL para ejecutar el sistema

@@ -4,7 +4,7 @@
  * 
  * Ejemplo de uso:
  *
- * http://quemas.geodatica.mx/controladores/indexmvc.php?controlador=folio&origen=correo&comentario=insertando
+ * http://quemas.geodatica.org/controladores/bootstrap.php?controlador=folio&origen=correo&comentario=insertando
  *
  */
  class ControladorFolio
@@ -17,12 +17,13 @@
      $modeloFolio = new ModeloFolio;
 
      $numFolio = $modeloFolio->getResultadoFolio($getVars);
-	
-	   // $folio = array('folio' => $numFolio, 'obs' => 'comentario');
 
-     //return json_encode($folio);
-     return $numFolio;
+     $folio = array('folio' => $numFolio, 'obs' => 'comentario');
 
+     // Debo usar echo en lugar de return para recibir valores desde curl
+     echo json_encode($folio);
+
+     //return $numFolio;
    }
  }
  ?>

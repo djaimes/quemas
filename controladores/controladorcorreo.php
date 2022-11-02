@@ -2,12 +2,16 @@
 <?php
 
 /**
+ * 
  * La entrada de este controlador viene como un flujo de correo de procmail 
- * indicado en /home/djaimes/.procmailrc 
+ * indicado en /home/reporte/.procmailrc 
+ *
  */
 
 /**
+ * 
  * Variables para depuración
+ *
  */
 
 ini_set('display_errors', 1);
@@ -44,7 +48,7 @@ fwrite($file, $email);
 fclose($file);
  
 // Parsear el contenido del correo 
-require_once('/var/www/html/quemas/lib/mailparser/MimeMailParser.class.php');
+require_once('/var/www/html/quemas/librerias/php-mime-mail-parser/MimeMailParser.class.php');
 
 $Parser = new MimeMailParser();
 $Parser->setPath($mailfile);
@@ -58,8 +62,13 @@ $attachments = $Parser->getAttachments();
 
 /**
  * Obtener un número de folio
+ *
+ * Ejemplo: 
+ *
+ * http://quemas.geodatica.org/controladores/bootstrap.php?controlador=folio&origen=correo&comentario=procmail
+ *
  */
-$url = 'http://quemas.geodatica.mx/controladores/bootstrap.php';
+$url = 'http://quemas.geodatica.org/controladores/bootstrap.php';
 
 $curl = curl_init();
  
@@ -77,6 +86,7 @@ curl_setopt($curl, CURLOPT_URL, $url1);
 curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
  
 $info = curl_exec($curl);
 
