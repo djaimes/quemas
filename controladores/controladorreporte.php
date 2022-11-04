@@ -6,12 +6,11 @@
  {
 
    function main(array $getVars){
-     // Obtener un folio
      
      $getVars['origen'] = 'Captura en sistema';
      $getVars['comentario'] = 'Recibido por telefonista';
      
-
+     // obtener folio
      include_once(SERVER_ROOT . '/controladores/controladorfolio.php');
      $nombreClase = 'ControladorFolio';
      $controlador = new $nombreClase;

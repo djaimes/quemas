@@ -36,15 +36,53 @@ function gps2Num($coordPart){
 			        return $parts[0];
 		        return floatval($parts[0]) / floatval($parts[1]);
 }
-//image file path
-$imageURL = "'WhatsApp Image 2022-06-30 at 4.49.04 PM.jpeg'";
-//$imageURL = "../data/fotos/30-06-2022/reporte_quema.jpg";
-//
-////get location of image
+
+/**
+ *
+ * Imprimir las propiedas exif
+ *
+ */
+function imprimirExif($image = ''){
+	$exif = exif_read_data($image, 0, true);
+	print_r($exif);
+}
+
+/**
+ *
+ * Ruta de la foto
+ *
+ */
+$imageURL = "../data/fotos/02-11-2022/Folio-11582_FOTO_cecati.jpg";
+
+
+/**
+ *
+ * Extraer las coordenadas de la foto
+ *
+ */
+//$imgLocation = get_image_location($imageURL);
+
 $imgLocation = get_image_location($imageURL);
-//
-////latitude & longitude
+
+//latitude & longitude
 $imgLat = $imgLocation['latitude'];
 $imgLng = $imgLocation['longitude'];
 
-echo "LatLng(". $imgLat . "," . $imgLng. ")";
+/**
+ *
+ * Prepara URL para ingresar reporte a postgis
+ *
+ */
+$data = array(  "controlador" => 'reporte',
+      		"origen" => 'foto',
+      		"latitud"=> $imgLat,
+      		"longitud"=> $imgLng,
+      		"correo"=> "djaimes@geodatica.org"
+    	);
+
+print_r($data);
+
+//echo "LatLng(". $imgLat . "," . $imgLng. ")" . "\n";
+
+// imprimirExif($imageURL);
+
