@@ -23,20 +23,14 @@ class ControladorGeotag
         $getVars['longitud'] = $exifProperties['longitude'] + (rand(0,1000)/1000); 
 
         // Generar el reporte de la quema
-
         $nombreControlador = 'reporte';
         $targetControlador = SERVER_ROOT . '/controladores/' . 'controlador' . strtolower($nombreControlador) . '.php';
         include_once($targetControlador);
-        $nombreClase = 'Controlador' . ucfirst($nombreControlador); // Crear el objeto controlador secundario
+
+        // Crear el objeto controlador secundario
+        $nombreClase = 'Controlador' . ucfirst($nombreControlador); 
         $controlador = new $nombreClase;
         $controlador->main($getVars);
-
-        /* if ($getVars['origen'] == 'correo'){
-	     echo $json;	// Si viene por correo
-     }
-     else{
-     	     return $json;	// Si viene por sistema web
-     }*/
     }
 
     function getImageGPS($image = '')
@@ -79,52 +73,11 @@ class ControladorGeotag
     }
 
     /**
-     *
      * Imprimir las propiedas exif
-     *
      */
     function imprimirExif($image = '')
     {
         $exif = exif_read_data($image, 0, true);
         print_r($exif);
     }
-
-    /**
-     *
-     * Ruta de la foto
-     *
-     */
-    //$imageURL = "../data/fotos/02-11-2022/Folio-11582_FOTO_cecati.jpg";
-
-
-    /**
-     *
-     * Extraer las coordenadas de la foto
-     *
-     */
-    //$imgLocation = get_image_location($imageURL);
-
-    //$imgLocation = get_image_location($imageURL);
-
-    //latitude & longitude
-    //$imgLat = $imgLocation['latitude'];
-    //$imgLng = $imgLocation['longitude'];
-
-    /**
-     *
-     * Prepara URL para ingresar reporte a postgis
-     *
-     */
-    //$data = array(  "controlador" => 'reporte',
-    //     		"origen" => 'foto',
-    //    		"latitud"=> $imgLat,
-    //   		"longitud"=> $imgLng,
-    //  		"correo"=> "djaimes@geodatica.org"
-    //	);
-
-    //print_r($data);
-
-    //echo "LatLng(". $imgLat . "," . $imgLng. ")" . "\n";
-
-    // imprimirExif($imageURL);
 }
