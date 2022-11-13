@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Controlador Folio
  * 
@@ -7,27 +8,26 @@
  * http://quemas.geodatica.org/controladores/bootstrap.php?controlador=folio&origen=correo&comentario=insertando
  *
  */
- class ControladorFolio
- {
+class ControladorFolio
+{
 
-   function main(array $getVars){
+  function main(array $getVars)
+  {
 
-     require_once(SERVER_ROOT . '/modelos/' . 'modelo' . 'folio.php');
+    require_once(SERVER_ROOT . '/modelos/' . 'modelo' . 'folio.php');
 
-     $modeloFolio = new ModeloFolio;
+    $modeloFolio = new ModeloFolio;
 
-     $numFolio = $modeloFolio->getResultadoFolio($getVars);
+    $numFolio = $modeloFolio->getResultadoFolio($getVars);
 
-     $folio = array('folio' => $numFolio, 'obs' => 'comentario');
-     
-     $json = json_encode($folio);
+    $folio = array('folio' => $numFolio, 'obs' => 'comentario');
 
-     if ($getVars['origen'] == 'correo'){
-	     echo $json;	// Si viene por correo
-     }
-     else{
-     	     return $json;	// Si viene por sistema web
-     }
-   }
- }
- ?>
+    $json = json_encode($folio);
+
+    if ($getVars['origen'] == 'curl') {
+      echo $json;  // Si viene por correo
+    } else {
+      return $json;  // Si viene por sistema web
+    }
+  }
+}

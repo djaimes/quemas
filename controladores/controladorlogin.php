@@ -4,7 +4,6 @@
  */
  class ControladorLogin
  {
-
    function main(array $getVars){
 
      require_once(SERVER_ROOT . '/modelos/' . 'modelo' . 'login.php');
@@ -18,4 +17,3 @@
      echo $resultadoLogin1;
    }
  }
- ?>

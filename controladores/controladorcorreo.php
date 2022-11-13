@@ -18,6 +18,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// URL para ejecutar el sistema
+define('SITE_ROOT', 'http://quemas.geodatica.org');
+
+// Raíz del sistema
+define('SERVER_ROOT', '/var/www/html/quemas');
+
 /**
  * Leer el flujo del correo entrante
  */
@@ -74,7 +80,7 @@ $curl = curl_init();
 
 $fields = array(
     'controlador' => 'folio',
-    'origen' => 'correo',
+    'origen' => 'curl',
     'comentario' => 'procmail'
 );
 
@@ -114,7 +120,8 @@ mail($from, 'Acuse de reporte de quemas', $mensaje);
  */
 $dia = date('d-m-Y');
 
-$imgpath = '/var/www/html/quemas/data/fotos/' . $dia . '/';
+//$imgpath = '/var/www/html/quemas/data/fotos/' . $dia . '/';
+$imgpath = '/var/www/html/quemas/data/fotos/';
 
 if (!is_dir($imgpath)) {
     umask(0);
@@ -128,7 +135,7 @@ if (count($attachments) > 0) {
 
         $imgname =  iconv_mime_decode($attachment->filename, 0, 'UTF-8');
 
-        $imgnameFoto = 'Folio-' . $folio . '_FOTO_' . $imgname;
+        $imgnameFoto = 'F' . $folio . '-' . $imgname;
 
         $ext = substr($imgname, strrpos($imgname, '.') +  1);
 
@@ -139,9 +146,18 @@ if (count($attachments) > 0) {
                     fwrite($fp, $bytes);
                 }
                 fclose($fp);
+                chmod($imgfile, 0755);
 
-                // Extraer coordenadas de la foto
-
+                // Extraer coordenadas de la foto con el controladorgeotag
+                $getVars = array();
+                $getVars['imageName'] = $imgnameFoto;
+                $getVars['correo'] = $from;
+                $nombreControlador = 'geotag';
+                $targetControlador = SERVER_ROOT . '/controladores/' . 'controlador' . strtolower($nombreControlador) . '.php';
+                include_once($targetControlador);
+                $nombreClase = 'Controlador' . ucfirst($nombreControlador); // Crear el objeto controlador secundario
+                $controlador = new $nombreClase;
+                $controlador->main($getVars);
 
                 // generar la foto pequeña
 
@@ -154,8 +170,10 @@ if (count($attachments) > 0) {
 
                 // Crear banda de metadatos
                 $colorletras = imagecolorallocatealpha($thumb, 255, 255, 255, 25);
+
                 //$metadata = $subject . ' ' .date('d/m/Y') . ' ' . $hora->format("G:i:s") . ' hrs';
                 $metadata = $folio . ' ' . date('d/m/Y') . ' ' . $hora->format("G:i:s") . ' hrs';
+
                 //|imagestring($thumb, 5, 10, 450, $metadata, $colorletras);
                 imagettftext($thumb, 12, 0, 10, 450, $colorletras, '/var/www/html/quemas/lib/fonts/cour.ttf', $metadata);
 
@@ -164,7 +182,7 @@ if (count($attachments) > 0) {
                 $marcaagua = imagecreatefrompng($marcapng);
                 imagecopy($thumb, $marcaagua, $newwidth - 120, $newheight - 156, 0, 0, 120, 156);
 
-                $imgnameThumb = 'Folio-' . $folio . '_THUMB_' . $imgname;
+                $imgnameThumb = 'F' . $folio . '_thumb' . $imgname;
 
                 $thumbfile = $imgpath . $imgnameThumb;
 

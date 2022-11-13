@@ -2,10 +2,10 @@
 
 /***
  *   Controlador frontal
+ *   
+ *   Primer respondiente a las peticiones
  *
- *   Ejemplo: Obtener un número de folio
- *
- *   http://quemas.geodatica.org/controladores/bootstrap.php?controlador=folio&origen=correo&comentario=safari
+ *   http://quemas.geodatica.org/controladores/bootstrap.php?controlador=nombreControlador&var1=val1
  *
  */
 
@@ -21,7 +21,6 @@ define('SITE_ROOT', 'http://quemas.geodatica.org');
 define('SERVER_ROOT', '/var/www/html/quemas');
 
 // Ruteador de controladores
-
 require_once(SERVER_ROOT . '/controladores/' . 'router.php');
 
 ?>

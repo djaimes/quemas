@@ -1,8 +1,10 @@
 <?php
 
 /***
-*   Modelo Reporte
-*/
+ *
+ *  Modelo Reporte
+ *
+ */
 
 require_once(SERVER_ROOT . '/librerias/drivers/' . 'postgresqldriver.php');
 
