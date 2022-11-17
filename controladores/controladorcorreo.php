@@ -80,8 +80,8 @@ $curl = curl_init();
 
 $fields = array(
     'controlador' => 'folio',
-    'origen' => 'curl',
-    'comentario' => 'procmail'
+    'origen' => 'procmail',
+    'comentario' => 'foto recibida con procmail'
 );
 
 $fields_string = http_build_query($fields);
@@ -101,17 +101,6 @@ $folioArray = json_decode($info);
 $folio = $folioArray->folio;
 
 curl_close($curl);
-
-
-/**
- * 
- * Enviar acuse por correo al usuario que reportó la quema
- *
- */
-
-$mensaje = 'Hemos recibido su reporte. Para su seguimiento le hemos asignado el folio: ' . $folio;
-mail($from, 'Acuse de reporte de quemas', $mensaje);
-
 
 /**
  * 
@@ -148,10 +137,17 @@ if (count($attachments) > 0) {
                 fclose($fp);
                 chmod($imgfile, 0755);
 
-                // Extraer coordenadas de la foto con el controladorgeotag
+                // Arreglo de parámetros
                 $getVars = array();
                 $getVars['imageName'] = $imgnameFoto;
                 $getVars['correo'] = $from;
+                $getVars['folio'] = $folio;
+                $getVars['latitude'] = 0;
+                $getVars['longitud'] = 0;
+                $getVars['origen'] = 'foto';
+                $getVars['comentario'] = 'Procesando geotag de foto';
+
+                // Extraer coordenadas de la foto con el controladorgeotag
                 $nombreControlador = 'geotag';
                 $targetControlador = SERVER_ROOT . '/controladores/' . 'controlador' . strtolower($nombreControlador) . '.php';
                 include_once($targetControlador);
@@ -159,8 +155,11 @@ if (count($attachments) > 0) {
                 $controlador = new $nombreClase;
                 $controlador->main($getVars);
 
-                // generar la foto pequeña
+                // Enviar acuse por correo al usuario que reportó la quema
+                $mensaje = 'Hemos recibido su reporte. Para su seguimiento le hemos asignado el folio: ' . $folio;
+                mail($from, 'Acuse de reporte de quemas', $mensaje);
 
+                // generar la foto pequeña
                 list($width, $height) = getimagesize($imgfile);
                 $newwidth = 640;
                 $newheight = 480;

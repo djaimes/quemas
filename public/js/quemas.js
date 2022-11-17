@@ -91,7 +91,8 @@ function agregarReporte(correoReporte, latitud, longitud) { // grrr tardé 3 dí
       origen: 'sistema',
       latitud: latitud,
       longitud: longitud,
-      correo: correoReporte
+      correo: correoReporte,
+      comentario: 'registrando desde el sistema web'
     },
 
     dataType: 'text',         // Valor esperado de regreso

@@ -24,7 +24,7 @@ class ControladorFolio
 
     $json = json_encode($folio);
 
-    if ($getVars['origen'] == 'curl') {
+    if ($getVars['origen'] == 'procmail') {
       echo $json;  // Si viene por correo
     } else {
       return $json;  // Si viene por sistema web

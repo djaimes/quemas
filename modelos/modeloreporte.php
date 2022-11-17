@@ -19,7 +19,7 @@ class ModeloReporte
   public function getResultadoReporte(array $getVars){
     $this->db->connect();
 
-    $sql = "INSERT INTO reporte(ubicacion, correo,latitud,longitud,folio) 
+    $sql = "INSERT INTO reporte(ubicacion, correo, latitud, longitud, folio) 
             VALUES(ST_SetSrid(ST_MakePoint({$getVars['longitud']},{$getVars['latitud']}),4326),
             '{$getVars['correo']}', {$getVars['latitud']}, {$getVars['longitud']}, 
             {$getVars['folio']}) returning id";
@@ -41,4 +41,3 @@ class ModeloReporte
     return $folioReporte;
   }
 }
-?>
