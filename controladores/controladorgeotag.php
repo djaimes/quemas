@@ -19,8 +19,8 @@ class ControladorGeotag
 
         $exifProperties = $this->getImageGPS($rutaFoto);
 
-        $getVars['latitud'] = $exifProperties['latitude']   + (rand(0,1000)/1000);
-        $getVars['longitud'] = $exifProperties['longitude'] + (rand(0,1000)/1000); 
+        $getVars['latitud'] = $exifProperties['latitude'];
+        $getVars['longitud'] = $exifProperties['longitude']; 
 
         // Generar el reporte de la quema
         $nombreControlador = 'reporte';
